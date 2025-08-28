@@ -610,7 +610,12 @@ std::string ArticleMaker::makeHtmlHeader(QString const &word,
 	" onMouseUp='gdBodyMouseUp(event);'"
 #endif
 	">";
-
+    qDebug() << word;
+    QFile file("/home/jack/wordhistory.txt");
+    // if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) return;
+    file.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream out(&file);
+    out << word << "\n";
     return result;
 }
 
@@ -638,11 +643,11 @@ std::string ArticleMaker::makeNotFoundBody(QString const &word,
 	// print the string
 	qDebug() << x;
 	// QDir::setCurrent("/home/jack");
-	QFile file("/home/jack/abcdefgdingjiong.txt");
+	QFile file("/home/jack/wordhistory.txt");
 	// if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) return;
-	file.open(QIODevice::WriteOnly | QIODevice::Text);
+	file.open(QIODevice::WriteOnly | QIODevice::Append);
 	QTextStream out(&file);
-	out << "The magic number is: " << 49 << "\n";
+	out << word << "\n";
     } else
 	result += tr("No translation was found in group <b>%1</b>.")
 		      .arg(QString::fromUtf8(
