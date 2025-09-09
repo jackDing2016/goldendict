@@ -1,6 +1,7 @@
 /* This file is (c) 2008-2012 Konstantin Isakov <ikm@goldendict.org>
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
+#include <QDateTime>
 #include "article_maker.hh"
 
 #include <limits.h>
@@ -617,7 +618,9 @@ std::string ArticleMaker::makeHtmlHeader(QString const &word,
     QTextStream out(&file);
     if (QString::compare(word, "welcome!", Qt::CaseInsensitive) != 0 &&
 	QString::compare(word, "(untitled)", Qt::CaseInsensitive) != 0) {
-	out << word << "\n";
+	out << word << " "
+	    << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")
+	    << "\n";
     }
     return result;
 }
