@@ -615,7 +615,10 @@ std::string ArticleMaker::makeHtmlHeader(QString const &word,
     // if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) return;
     file.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream out(&file);
-    out << word << "\n";
+    if (QString::compare(word, "welcome!", Qt::CaseInsensitive) != 0 &&
+	QString::compare(word, "(untitled)", Qt::CaseInsensitive) != 0) {
+	out << word << "\n";
+    }
     return result;
 }
 
