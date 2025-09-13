@@ -619,7 +619,7 @@ std::string ArticleMaker::makeHtmlHeader(QString const &word,
     if (QString::compare(word, "welcome!", Qt::CaseInsensitive) != 0 &&
 	QString::compare(word, "(untitled)", Qt::CaseInsensitive) != 0) {
 	out << word << " "
-	    << QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")
+	    << QDateTime::currentDateTime().toString("yyyy-MM-dd-hh:mm:ss")
 	    << "\n";
     }
     return result;
